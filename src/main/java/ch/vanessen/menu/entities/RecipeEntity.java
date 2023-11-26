@@ -4,9 +4,11 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.GenericGenerator;
 
-import java.util.Set;
+import java.util.List;
 import java.util.UUID;
 
 @Entity(name = "RECIPES")
@@ -25,7 +27,13 @@ public class RecipeEntity {
     private String name;
     private String description;
     private String imageUrl;
-//    @OneToMany(mappedBy="recipe")
-//    private Set<IngredientEntity> ingredients;
+    @OneToMany(
+            cascade = CascadeType.ALL,
+            fetch = FetchType.EAGER,
+            orphanRemoval = true
+    )
+    @Fetch(FetchMode.SELECT) // Avoid problems with multiple eager-fetched collections
+    @JoinColumn(name = "recipe_id")
+    private List<IngredientEntity> ingredients;
 
 }

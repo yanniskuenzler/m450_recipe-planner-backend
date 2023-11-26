@@ -13,6 +13,10 @@
 * http://localhost:8080/h2-console
 
 
+
+* Hibernate Tables
+* https://www.bezkoder.com/jpa-one-to-many/
+
 ### 03.10.2023
 
 #### Frontend
@@ -20,3 +24,12 @@
   * Titel
   * Beschreibung
   * Bild
+
+
+
+
+
+
+Links
+
+* [Rest Standards used by](https://blog.stoplight.io/rest-api-standards-do-they-even-exist)

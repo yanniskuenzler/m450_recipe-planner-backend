@@ -3,10 +3,8 @@ package ch.vanessen.menu;
 import ch.vanessen.menu.domain.Ingredient;
 import ch.vanessen.menu.domain.Recipe;
 import ch.vanessen.menu.domain.Unit;
-import ch.vanessen.menu.entities.IngredientEntity;
-import ch.vanessen.menu.entities.RecipeEntity;
 import ch.vanessen.menu.mapper.RecipeEntityMapper;
-import ch.vanessen.menu.repository.MenuRepository;
+import ch.vanessen.menu.repository.RecipeRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -30,14 +28,14 @@ public class RecipePlannerApplication {
 	RecipeEntityMapper mapper;
 
 	@Bean
-	CommandLineRunner init(MenuRepository menuRepository) {
+	CommandLineRunner init(RecipeRepository recipeRepository) {
 		return args -> {
 			Stream.of("Lasagne", "Bolo", "Rice", "Spaghetti", "Pommes").forEach(name -> {
 				Recipe recipe = new Recipe(UUID.randomUUID(), name, name.toLowerCase(), "https://image-url.com", List.of(new Ingredient(UUID.randomUUID(), "Tomato", "The big ones", Unit.PIECE, 5)));
-
-				menuRepository.save(mapper.domainToEntity(recipe));
+				var entity = mapper.domainToEntity(recipe);
+				recipeRepository.save(entity);
 			});
-			menuRepository.findAll().forEach(s -> log.info(s.toString()));
+			recipeRepository.findAll().forEach(s -> log.info(s.toString()));
 		};
 	}
 
