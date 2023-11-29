@@ -29,8 +29,9 @@ public class RecipeController {
 
     @GetMapping("/api/recipes")
     public ResponseEntity<List<Recipe>> getRecipes() {
-        var recipes = recipeRepository.findAll();
-        return new ResponseEntity<>(null, HttpStatus.OK);
+        List<RecipeEntity> recipesEntities = recipeRepository.findAll();
+        var recipes = recipesEntities.stream().map(mapper::entityToDomain).toList();
+        return new ResponseEntity<>(recipes, HttpStatus.OK);
     }
 
     @GetMapping("/api/recipes/recipe/{recipeId}")
