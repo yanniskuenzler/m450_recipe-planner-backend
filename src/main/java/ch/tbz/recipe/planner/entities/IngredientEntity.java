@@ -1,6 +1,6 @@
-package ch.vanessen.menu.entities;
+package ch.tbz.recipe.planner.entities;
 
-import ch.vanessen.menu.domain.Unit;
+import ch.tbz.recipe.planner.domain.Unit;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;

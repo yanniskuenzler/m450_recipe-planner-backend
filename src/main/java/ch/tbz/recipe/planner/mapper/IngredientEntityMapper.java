@@ -1,7 +1,7 @@
-package ch.vanessen.menu.mapper;
+package ch.tbz.recipe.planner.mapper;
 
-import ch.vanessen.menu.domain.Ingredient;
-import ch.vanessen.menu.entities.IngredientEntity;
+import ch.tbz.recipe.planner.entities.IngredientEntity;
+import ch.tbz.recipe.planner.domain.Ingredient;
 import org.mapstruct.Mapper;
 
 import java.util.List;

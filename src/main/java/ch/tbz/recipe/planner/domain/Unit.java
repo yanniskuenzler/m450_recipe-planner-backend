@@ -1,4 +1,4 @@
-package ch.vanessen.menu.domain;
+package ch.tbz.recipe.planner.domain;
 
 public enum Unit {
     PIECE,

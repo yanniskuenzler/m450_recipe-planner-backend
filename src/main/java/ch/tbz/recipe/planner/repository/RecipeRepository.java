@@ -1,7 +1,7 @@
-package ch.vanessen.menu.repository;
+package ch.tbz.recipe.planner.repository;
 
 
-import ch.vanessen.menu.entities.RecipeEntity;
+import ch.tbz.recipe.planner.entities.RecipeEntity;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;

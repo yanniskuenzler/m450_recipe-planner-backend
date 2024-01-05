@@ -1,9 +1,8 @@
-package ch.vanessen.menu.mapper;
+package ch.tbz.recipe.planner.mapper;
 
-import ch.vanessen.menu.domain.Recipe;
-import ch.vanessen.menu.entities.RecipeEntity;
+import ch.tbz.recipe.planner.domain.Recipe;
+import ch.tbz.recipe.planner.entities.RecipeEntity;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 
 @Mapper(config = CommonMapperConfig.class)
 public interface RecipeEntityMapper {

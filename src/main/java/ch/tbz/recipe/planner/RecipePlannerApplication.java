@@ -1,10 +1,10 @@
-package ch.vanessen.menu;
+package ch.tbz.recipe.planner;
 
-import ch.vanessen.menu.domain.Ingredient;
-import ch.vanessen.menu.domain.Recipe;
-import ch.vanessen.menu.domain.Unit;
-import ch.vanessen.menu.mapper.RecipeEntityMapper;
-import ch.vanessen.menu.repository.RecipeRepository;
+import ch.tbz.recipe.planner.mapper.RecipeEntityMapper;
+import ch.tbz.recipe.planner.repository.RecipeRepository;
+import ch.tbz.recipe.planner.domain.Ingredient;
+import ch.tbz.recipe.planner.domain.Recipe;
+import ch.tbz.recipe.planner.domain.Unit;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -15,15 +15,14 @@ import org.springframework.context.annotation.Bean;
 import java.util.List;
 import java.util.Random;
 import java.util.UUID;
-import java.util.random.RandomGenerator;
 import java.util.stream.Stream;
 
 @SpringBootApplication
 @Slf4j
 public class RecipePlannerApplication {
 
-	private final static String description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
-	private final List<String> images =
+	private final static String DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
+	private final static List<String> IMAGES =
 			List.of("https://img.freepik.com/free-photo/grilled-gourmet-burger-with-cheese-tomato-onion-french-fries-generated-by-artificial-intelligence_25030-63181.jpg",
 					"https://img.taste.com.au/5qlr1PkR/taste/2016/11/spaghetti-bolognese-106560-1.jpeg",
 					"https://www.kitchensanctuary.com/wp-content/uploads/2020/04/Chicken-Fried-Rice-square-FS-.jpg",
@@ -42,9 +41,12 @@ public class RecipePlannerApplication {
 		Random rand = new Random();
 
 		return args -> {
-			Stream.of("Lasagne", "Bolo", "Rice", "Spaghetti", "Pommes", "Lasagne", "Bolo", "Rice", "Spaghetti", "Pommes", "Lasagne", "Bolo", "Rice", "Spaghetti", "Pommes").forEach(name -> {
-				int randomIndex = rand.nextInt(images.size());
-				Recipe recipe = new Recipe(UUID.randomUUID(), name, description, images.get(randomIndex), List.of(new Ingredient(UUID.randomUUID(), "Tomato", "The big ones", Unit.PIECE, 5)));
+			Stream.of(
+					"Lasagne al Forno", "Spaghetti Bolognese", "Fried Rice", "Spaghetti Bolognese", "Pommes Frites",
+					"Lasagne al Forno", "Spaghetti Bolognese", "Fried Rice", "Spaghetti Bolognese", "Pommes Frites",
+					"Lasagne al Forno", "Spaghetti Bolognese", "Fried Rice", "Spaghetti Bolognese", "Pommes Frites").forEach(name -> {
+				int randomIndex = rand.nextInt(IMAGES.size());
+				Recipe recipe = new Recipe(UUID.randomUUID(), name, DESCRIPTION, IMAGES.get(randomIndex), List.of(new Ingredient(UUID.randomUUID(), "Tomato", "The big ones", Unit.PIECE, 5)));
 				var entity = mapper.domainToEntity(recipe);
 				recipeRepository.save(entity);
 			});
