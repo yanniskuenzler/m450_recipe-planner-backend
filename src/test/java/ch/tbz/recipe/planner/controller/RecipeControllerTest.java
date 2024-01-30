@@ -31,6 +31,7 @@ import java.util.UUID;
 import static ch.tbz.recipe.planner.domain.Unit.PIECE;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -92,9 +93,9 @@ public class RecipeControllerTest {
                 .andExpect(MockMvcResultMatchers.content().json("{\"id\":\"45df3de8-8397-4638-a71c-07c7ef63c7da\",\"name\":\"Spaghetti alla Carbonara\",\"description\":\"öaksjdgökadjgökadg\",\"imageUrl\":\"https://www.deliciousmagazine.co.uk/wp-content/uploads/2020/01/lasagne.jp\",\"ingredients\":[{\"id\":\"cfdc5074-c16e-45f5-90fc-966366a145e9\",\"name\":\"Bacon\",\"comment\":\"alkdsfjöaldg\",\"unit\":\"PIECE\",\"amount\":1}]}"));
      }
 
-     /**
     @Test
     public void TestPostRecipe() throws Exception {
+
         RequestBuilder requestBuilder = MockMvcRequestBuilders.post("/api/recipes")
                 .accept(MediaType.APPLICATION_JSON)
                         .content("{\"id\":\"83df3de8-8393-4638-a72c-07c7ef63c7da\",\"name\":\"Spaghetti Napoli\",\"description\":\"öaksjdgökadjgökadg\",\"imageUrl\":\"https://www.deliciousmagazine.co.uk/wp-content/uploads/2020/01/lasagne.jp\",\"ingredients\":[{\"id\":\"ufdc5934-c16e-87f5-90fc-966366a145e9\",\"name\":\"Tomatoes\",\"comment\":\"alkdsfjöaldg\",\"unit\":\"PIECE\",\"amount\":1}]}");
@@ -102,7 +103,12 @@ public class RecipeControllerTest {
         mockMvc.perform(requestBuilder)
                 .andDo(MockMvcResultHandlers.print())
                 .andExpect(status().isOk());
+
+
+
+
+
      }
-    */
+
 
 }
